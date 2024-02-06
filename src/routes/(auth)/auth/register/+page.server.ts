@@ -1,7 +1,7 @@
 import type { PageServerLoad, Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
-import { registerFormSchema } from './(components)/auth-register-form.svelte';
+import { registerFormSchema } from './auth-register-form.svelte';
 export const load: PageServerLoad = async () => {
 	return {
 		form: await superValidate(registerFormSchema)

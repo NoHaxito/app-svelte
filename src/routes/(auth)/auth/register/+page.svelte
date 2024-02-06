@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import { Button } from '$lib/components/ui/button';
 	import { Stack } from 'phosphor-svelte';
-	import AuthRegisterForm from './(components)/auth-register-form.svelte';
+	import AuthRegisterForm from './auth-register-form.svelte';
 	export let data: PageData;
 </script>
 
