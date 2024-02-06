@@ -4,7 +4,7 @@
 	import { ProgressBar } from '@prgm/sveltekit-progress-bar';
 </script>
 
-<ProgressBar zIndex={100} />
+<ProgressBar class="text-indigo-500" zIndex={100} />
 <ModeWatcher />
 <div class="">
 	<main class="">
