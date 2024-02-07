@@ -20,9 +20,7 @@
 		<p class="flex w-full items-center justify-between transition-opacity duration-[800ms]">
 			<slot name="title" />
 			{#if $$slots.label}
-				<div>
-					<slot name="label" />
-				</div>
+				<slot name="label" />
 			{/if}
 		</p>
 	</a>
