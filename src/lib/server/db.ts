@@ -1,17 +1,20 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 import { Kysely, PostgresDialect } from 'kysely';
+import { env } from '../env';
 
 const config = {
-	user: process.env.POSTGRESQL_USER,
-	password: process.env.POSTGRESQL_PASSWORD,
-	host: process.env.POSTGRESQL_HOST,
+	user: env.POSTGRESQL_USER,
+	password: env.POSTGRESQL_PASSWORD,
+	host: env.POSTGRESQL_HOST,
 	port: 19091,
 	database: 'defaultdb',
 	ssl: {
 		rejectUnauthorized: true,
-		ca: process.env.POSTGRESQL_SSL_CERTIFICATE
+		ca: env.POSTGRESQL_SSL_CERTIFICATE
 	}
 };
+
 export const pool = new Pool(config);
 
 export const db = new Kysely<Database>({
@@ -25,15 +28,14 @@ interface Database {
 	oauth_account: OauthAccountTable;
 	user_session: SessionTable;
 }
-
 interface UserTable {
 	id: string;
 	username: string;
 	email: string;
 	avatar_url: string;
 	hashed_password: string;
+	role?: 'user' | 'admin';
 }
-
 interface SessionTable {
 	id: string;
 	user_id: string;

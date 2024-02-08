@@ -4,54 +4,53 @@
 		username: z.string().min(2).max(50),
 		email: z.string().email(),
 		password: z.string().min(6).max(50),
-		confirmPassword: z.string().min(6).max(50),
-		rememberMe: z.boolean().default(true)
+		confirmPassword: z.string().min(6).max(50)
 	});
 	type FormSchema = typeof registerFormSchema;
 </script>
 
 <script lang="ts">
 	import * as Form from '$lib/components/ui/form';
-
+	import { toast } from 'svelte-sonner';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { Button } from '$components/ui/button';
 	import { cn } from '$lib/utils';
 	import { CircleNotch, GithubLogo, GoogleLogo } from 'phosphor-svelte';
-
+	import { superForm } from 'sveltekit-superforms/client';
 	let className: string | undefined | null = undefined;
 	export { className as class };
+	export let form: SuperValidated<FormSchema>;
 
-	export let data: SuperValidated<FormSchema>;
+	const superFrm = superForm(form, {
+		validators: registerFormSchema,
+		onResult(event) {
+			console.log(event);
+			if (event.result.type === 'failure') {
+				toast.error('Something went wrong!', {
+					description: event.result.data?.message ?? 'Please try again'
+				});
+			}
+			if (event.result.type === 'redirect' && event.result.location.startsWith('/auth')) {
+				toast.success('Registered successfully');
+			}
+		}
+	});
+	const { submitting } = superFrm;
 </script>
 
 <div class={cn('grid gap-6', className)} {...$$restProps}>
 	<Form.Root
-		form={data}
+		form={superFrm}
 		schema={registerFormSchema}
 		let:config
-		method="POST"
+		controlled
 		class="grid gap-0.5 sm:grid-cols-2 sm:gap-1"
-		debug
+		method="POST"
 	>
-		<Form.Field {config} name="rememberMe">
-			<Form.Item
-				class="col-span-2 flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4"
-			>
-				<Form.Checkbox />
-				<div class="space-y-1 leading-none">
-					<Form.Label>Use different settings for my mobile devices</Form.Label>
-					<Form.Description>
-						You can manage your mobile notifications in the <a href="/auth/register"
-							>mobile settings</a
-						> page.
-					</Form.Description>
-				</div>
-			</Form.Item>
-		</Form.Field>
 		<Form.Field {config} name="username">
 			<Form.Item>
 				<Form.Label>Username</Form.Label>
-				<Form.Input placeholder="my username" />
+				<Form.Input type="text" placeholder="my username" />
 				<Form.Validation />
 			</Form.Item>
 		</Form.Field>
@@ -82,10 +81,10 @@
 				<Form.Validation />
 			</Form.Item>
 		</Form.Field>
-		<Form.Button size="sm" class="sm:col-span-2" disabled={false}>
-			<!-- {#if isLoading}
-					<CircleNotch class="mr-2 h-4 w-4 animate-spin" />
-				{/if} -->
+		<Form.Button size="sm" class="sm:col-span-2" disabled={$submitting}>
+			{#if $submitting}
+				<CircleNotch class="h-4 w-4 animate-spin" />
+			{/if}
 			Create account</Form.Button
 		>
 	</Form.Root>
@@ -98,13 +97,21 @@
 		</div>
 	</div>
 	<div class="grid gap-1 sm:grid-cols-2">
-		<Button variant="outline" size="sm" type="button" disabled={false}>
-			<GithubLogo class="mr-2 h-4 w-4" />
+		<Button variant="outline" size="sm" type="button" disabled={$submitting}>
+			{#if $submitting}
+				<CircleNotch class="h-4 w-4 animate-spin" />
+			{:else}
+				<GithubLogo class="h-4 w-4" />
+			{/if}
 			{' '}
 			GitHub
 		</Button>
-		<Button variant="default" size="sm" type="button" disabled={false}>
-			<GoogleLogo class="mr-2 h-4 w-4" />
+		<Button variant="default" size="sm" type="button" disabled={$submitting}>
+			{#if $submitting}
+				<CircleNotch class="h-4 w-4 animate-spin" />
+			{:else}
+				<GoogleLogo class="h-4 w-4" />
+			{/if}
 			{' '}
 			Google
 		</Button>

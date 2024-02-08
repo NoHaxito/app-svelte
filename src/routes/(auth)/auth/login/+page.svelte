@@ -1,14 +1,21 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Stack } from 'phosphor-svelte';
-	import AuthLoginForm from './(components)/auth-login-form.svelte';
+	import { CaretRight, Stack } from 'phosphor-svelte';
+	import AuthLoginForm from './auth-login-form.svelte';
+	import type { PageData } from './$types';
+	export let data: PageData;
 </script>
 
 <div
 	class="container relative min-h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
 >
-	<Button href="/auth/register" variant="ghost" class="absolute right-4 top-4 md:right-8 md:top-8">
-		Register
+	<Button
+		href="/auth/register"
+		size="xs"
+		variant="ghost"
+		class="absolute right-4 top-4 md:right-8 md:top-8"
+	>
+		Register <CaretRight class="h-4 w-4" />
 	</Button>
 	<div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
 		<div
@@ -24,23 +31,17 @@
 			<Stack class="h-6 w-6" weight="fill" />
 			<span class="text-lg font-bold">Manager</span>
 		</a>
-		<div class="relative z-20 mt-auto">
-			<blockquote class="space-y-2">
-				<p class="text-lg">
-					&ldquo;This library has saved me countless hours of work and helped me deliver stunning
-					designs to my clients faster than ever before. Highly recommended!&rdquo;
-				</p>
-				<footer class="text-sm">Sofia Davis</footer>
-			</blockquote>
-		</div>
+		<div class="relative z-20 mt-auto"></div>
 	</div>
 	<div class="lg:p-8">
-		<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+		<div class="mx-auto flex w-full flex-col justify-center space-y-6 py-8 sm:py-0 sm:w-[400px]">
 			<div class="flex flex-col space-y-2 text-center">
-				<h1 class="text-2xl font-semibold tracking-tight">Create an account</h1>
-				<p class="text-sm text-muted-foreground">Enter your email below to create your account</p>
+				<h1 class="text-2xl font-semibold tracking-tight">Welcome back</h1>
+				<p class="text-sm text-muted-foreground">
+					Enter your email and password to login to your account.
+				</p>
 			</div>
-			<AuthLoginForm />
+			<AuthLoginForm form={data.form} />
 			<p class="px-8 text-center text-sm text-muted-foreground">
 				By clicking continue, you agree to our{' '}
 				<a href="/terms" class="underline underline-offset-4 hover:text-primary">

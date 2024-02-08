@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { DropdownMenu as DropdownMenuPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
-	import { ChevronRight } from "lucide-svelte";
+	import { CaretRight } from "phosphor-svelte";
 
 	type $$Props = DropdownMenuPrimitive.SubTriggerProps & {
 		inset?: boolean;
@@ -28,5 +28,5 @@
 	on:pointermove
 >
 	<slot />
-	<ChevronRight class="ml-auto h-4 w-4" />
+	<CaretRight class="ml-auto h-4 w-4" />
 </DropdownMenuPrimitive.SubTrigger>

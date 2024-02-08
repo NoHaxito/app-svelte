@@ -8,6 +8,6 @@
 	export { className as class };
 </script>
 
-<span class={cn("ml-auto text-xs tracking-widest opacity-60", className)} {...$$restProps}>
+<span class={cn("flex items-center gap-x-0.5 ml-auto text-xs tracking-widest opacity-60", className)} {...$$restProps}>
 	<slot />
 </span>

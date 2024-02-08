@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Button } from '$lib/components/ui/button';
-	import { Stack } from 'phosphor-svelte';
+	import { CaretLeft, Stack } from 'phosphor-svelte';
 	import AuthRegisterForm from './auth-register-form.svelte';
 	export let data: PageData;
 </script>
@@ -9,8 +9,13 @@
 <div
 	class="container relative min-h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
 >
-	<Button href="/auth/login" variant="ghost" class="absolute right-4 top-4 md:right-8 md:top-8">
-		Login
+	<Button
+		size="xs"
+		href="/auth/login"
+		variant="ghost"
+		class="absolute right-4 top-4 md:right-8 md:top-8"
+	>
+		<CaretLeft class="h-4 w-4" /> Login
 	</Button>
 
 	<div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
@@ -29,12 +34,12 @@
 		</a>
 	</div>
 	<div class="lg:p-8">
-		<div class="mx-auto flex w-full flex-col justify-center space-y-6 py-8 sm:w-[400px] sm:py-0">
+		<div class="mx-auto flex w-full flex-col justify-center space-y-6 py-8 sm:w-[400px] md:py-0">
 			<div class="flex flex-col space-y-2 text-center">
 				<h1 class="text-2xl font-semibold tracking-tight">Create an account</h1>
-				<p class="text-sm text-muted-foreground">Enter your email below to create your account</p>
+				<p class="text-sm text-muted-foreground">Fill the form below to create your account</p>
 			</div>
-			<AuthRegisterForm data={data.form} />
+			<AuthRegisterForm form={data.form} />
 			<p class="px-8 text-center text-sm text-muted-foreground">
 				By clicking continue, you agree to our{' '}
 				<a href="/terms" class="underline underline-offset-4 hover:text-primary">

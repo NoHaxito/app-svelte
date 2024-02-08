@@ -11,14 +11,15 @@ export const lucia = new Lucia(adapter, {
 	sessionCookie: {
 		attributes: {
 			// set to `true` when using HTTPS
-			secure: !dev
+			secure: false
 		}
 	},
 	getSessionAttributes: (attributes) => {
 		return {
 			username: attributes.username,
 			email: attributes.email,
-			avatar_url: attributes.avatar_url
+			avatar_url: attributes.avatar_url,
+			role: attributes.role
 		};
 	}
 });
@@ -33,4 +34,5 @@ interface DatabaseSessionAttributes {
 	username: string;
 	email: string;
 	avatar_url: string;
+	role: string;
 }
