@@ -33,8 +33,8 @@
 		</a>
 		<div class="relative z-20 mt-auto"></div>
 	</div>
-	<div class="lg:p-8">
-		<div class="mx-auto flex w-full flex-col justify-center space-y-6 py-8 sm:py-0 sm:w-[400px]">
+	<div class="">
+		<div class="mx-auto my-auto flex w-full flex-col justify-center space-y-6 py-8 sm:w-[400px]">
 			<div class="flex flex-col space-y-2 text-center">
 				<h1 class="text-2xl font-semibold tracking-tight">Welcome back</h1>
 				<p class="text-sm text-muted-foreground">

@@ -24,13 +24,12 @@
 	const superFrm = superForm(form, {
 		validators: registerFormSchema,
 		onResult(event) {
-			console.log(event);
 			if (event.result.type === 'failure') {
 				toast.error('Something went wrong!', {
 					description: event.result.data?.message ?? 'Please try again'
 				});
 			}
-			if (event.result.type === 'redirect' && event.result.location.startsWith('/auth')) {
+			if (event.result.type === 'redirect') {
 				toast.success('Registered successfully');
 			}
 		}

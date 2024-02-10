@@ -50,7 +50,7 @@ export const actions: Actions = {
 			path: '.',
 			...sessionCookie.attributes
 		});
-		console.log('next step, redirect.')
+
 		throw redirect(302, '/');
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	}

@@ -10,9 +10,10 @@
 	const { data } = $page;
 </script>
 
-<ProgressBar class="text-indigo-e500" zIndex={100} />
+<ProgressBar class="text-indigo-500" zIndex={100} />
 <ModeWatcher />
-<CommandMenu role={data.user.role} />
+<CommandMenu />
+
 <div class="border-b bg-neutral-100 p-2.5 dark:border-neutral-800 dark:bg-neutral-900">
 	<div class="container mx-auto flex items-center gap-2">
 		<Warning weight="fill" class="size-4 min-h-4 min-w-4 fill-yellow-500" />

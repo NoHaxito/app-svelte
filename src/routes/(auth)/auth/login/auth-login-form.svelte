@@ -15,7 +15,6 @@
 	import { cn } from '$lib/utils';
 	import { CircleNotch, GithubLogo, GoogleLogo } from 'phosphor-svelte';
 	import { superForm } from 'sveltekit-superforms/client';
-	import { Checkbox } from '$components/ui/checkbox';
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let form: SuperValidated<FormSchema>;
@@ -23,14 +22,12 @@
 	const superFrm = superForm(form, {
 		validators: loginFormSchema,
 		onResult(event) {
-			console.log(event);
 			if (event.result.type === 'failure') {
 				toast.error('Something went wrong!', {
 					description: event.result.data?.message ?? 'Please try again'
 				});
 			}
-			if (event.result.type === 'redirect' && event.result.location.startsWith('/auth')) {
-				console.log('logged in ??');
+			if (event.result.type === 'redirect') {
 				toast.success('Logged in successfully');
 			}
 		},
@@ -69,7 +66,6 @@
 				<Form.Validation />
 			</Form.Item>
 		</Form.Field>
-		<Checkbox />
 		<Form.Button size="sm" class="" disabled={$submitting}>
 			{#if $submitting}
 				<CircleNotch class="h-4 w-4 animate-spin" />

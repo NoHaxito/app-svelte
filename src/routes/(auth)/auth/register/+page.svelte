@@ -33,8 +33,8 @@
 			<span class="text-lg font-bold">Manager</span>
 		</a>
 	</div>
-	<div class="lg:p-8">
-		<div class="mx-auto flex w-full flex-col justify-center space-y-6 py-8 sm:w-[400px] md:py-0">
+	<div class="flex items-center justify-center lg:p-8">
+		<div class="mx-auto flex w-full flex-col justify-center space-y-6 py-8 sm:w-[400px]">
 			<div class="flex flex-col space-y-2 text-center">
 				<h1 class="text-2xl font-semibold tracking-tight">Create an account</h1>
 				<p class="text-sm text-muted-foreground">Fill the form below to create your account</p>

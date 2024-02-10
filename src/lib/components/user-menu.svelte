@@ -64,13 +64,15 @@
 			Support
 		</DropdownMenu.Item>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item>
-			<UserGear weight="fill" class="text-foreground-alt" />
-			Admin
-		</DropdownMenu.Item>
-		<DropdownMenu.Separator />
-		<form method="post" use:enhance>
-			<Button class="w-full justify-start px-2 py-1.5 h-max" variant="ghost" type="submit">
+		{#if user?.role === 'admin'}
+			<DropdownMenu.Item>
+				<UserGear weight="fill" class="text-foreground-alt" />
+				Admin
+			</DropdownMenu.Item>
+			<DropdownMenu.Separator />
+		{/if}
+		<form action="/?logout" method="post" use:enhance>
+			<Button class="h-max w-full justify-start px-2 py-1.5" variant="ghost" type="submit">
 				<SignOut weight="fill" class="text-foreground-alt" />
 				Logout
 			</Button>
